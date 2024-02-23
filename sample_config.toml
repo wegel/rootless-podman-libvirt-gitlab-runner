@@ -1,0 +1,19 @@
+concurrent = 1
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "libvirt-in-rootless-podman-driver"
+  url = "https://www.gitlab.com/"
+  token = "MY_TOKEN"
+  executor = "custom"
+  builds_dir = "/home/gitlab-runner/builds"
+  cache_dir = "/home/gitlab-runner/cache"
+  [runners.custom_build_dir]
+  [runners.custom]
+    prepare_exec = "/home/gitlab-runner/prepare-gitlab-vm.sh"
+    run_exec = "/home/gitlab-runner/run-gitlab-vm.sh"
+    cleanup_exec = "/home/gitlab-runner/cleanup-gitlab-vm.sh"
+
